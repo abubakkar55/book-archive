@@ -30,7 +30,7 @@ searchBtn.addEventListener("click", () => {
     // validation for empty value
     if (inputValue === "") {
         error.innerHTML = `
-        <p class="text-white m-12 text-center p-5 bg-red-500 rounded w-80"> ⚠️ please user enter a valid name!!</p>`
+        <p class="text-white m-12 text-center p-5 bg-red-500 rounded w-80"> ⚠️ please user enter a book name!!</p>`
         // trun off spinner if the input is value
         spinner.classList.add("hidden");
         return;
