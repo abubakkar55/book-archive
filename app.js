@@ -1,3 +1,4 @@
+// DOM Selection
 const inputField = document.getElementById("input-field");
 const searchBtn = document.getElementById("search-btn");
 const displayCard = document.getElementById("display-card");
@@ -26,19 +27,17 @@ searchBtn.addEventListener("click", () => {
     // trun on spinner
     spinner.classList.remove("hidden");
 
-
-    // validation
+    // validation for empty value
     if (inputValue === "") {
         error.innerHTML = `
-        <p class="text-white m-12 text-center p-5 bg-red-500 rounded w-80"> ⚠️ please user enter a valid name!!</p>
-        `
-        // trun off spinner if empty input value
+        <p class="text-white m-12 text-center p-5 bg-red-500 rounded w-80"> ⚠️ please user enter a valid name!!</p>`
+        // trun off spinner if the input is value
         spinner.classList.add("hidden");
-
         return;
     } else {
         error.innerHTML = "";
     }
+
     // fetching data
     const url = `https://openlibrary.org/search.json?q=${inputValue}`
     fetchApi(url)
@@ -54,42 +53,35 @@ const showCard = (data) => {
     // trun off spinner
     spinner.classList.add("hidden");
 
-    // validation
+    // validation for no result
     if (data.numFound === 0) {
         error.innerHTML = `
-        <p class="text-white m-12 text-center p-5 bg-red-500 rounded w-80">your search result <span class="font-bold"> ${inputField.value} </span> can not be found !!</p>
-        `
+        <p class="text-white m-12 text-center p-5 bg-red-500 rounded w-80">your search result <span class="font-bold"> ${inputField.value} </span> can not be found !!</p>`
         return;
     }
 
-
     // showing data by forEach loop
-    const dataArray = data.docs.slice(0,30);
+    const dataArray = data.docs.slice(0, 30);
 
-    console.log(dataArray);
     dataArray.forEach(item => {
         const div = document.createElement("div");
         div.classList.add("rounded-2xl", "border-2", "bg-white", "p-3", "h-auto");
+    
         const url = `https://covers.openlibrary.org/b/id/${item.cover_i}-M.jpg`;
 
         div.innerHTML = ` 
-        <img class="w-full h-44 mb-4 rounded-2xl" src="${url ? url : console.log("didn't")}" alt="book-thumbnail">
+        <img class="w-full h-44 mb-4 rounded-2xl" src="${url}" alt="book-thumbnail">
         <h3 class="text-xl"> <span class="font-semibold"> Name:</span> ${item.title} </h3>
         <h3 class="text-xl"> <span class="font-semibold"> Author:</span> ${item.author_name ? item.author_name.slice(0,1) : "N/A"} </h3>
         <h3 class="text-xl"> <span class="font-semibold"> Publisher:</span> ${item.publisher ? item.publisher.slice(0,1) : "N?A"} </h3>
-        <h3 class="text-xl mb-6"> <span class="font-semibold">First Published:</span> ${item.first_publish_year} </h3>
+        <h3 class="text-xl mb-6"> <span class="font-semibold">First Published:</span> ${item.first_publish_year ? item.first_publish_year : "N/A"} </h3>
         `
         displayCard.appendChild(div);
 
         // total found calculation
         totalFoundResult.push(item);
         totalFound.innerHTML = `
-         total book founded  ${totalFoundResult.length} from  ${dataArray.length}
+         total book found  ${totalFoundResult.length} from  ${dataArray.length}
          `
-    })
-
-
-
-}
-
-// function for book cover
+    });
+};
