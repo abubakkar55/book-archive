@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Archive </title>
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <!--  Tailwind css -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+
+        <!-- heading -->
+        <div class="relative">
+            <h1 class="heading text-5xl font-bold text-center py-3">Welcome to my Book <span
+                    class="text-yellow-400">Archive</span> </h1>
+            <input type="text" id="input-field"
+                class="w-3/5 ring-2 ring-gray-200 focus:ring-green-200 p-3 rounded ml-32 mt-6 flex outline-none"
+                placeholder="search here your Favourite Book">
+            <button id="search-btn"
+                class="py-3 px-5 border-2 rounded shadow border-yellow-400 absolute top-24 right-56  hover:bg-yellow-400 hover:text-white">search
+            </button>
+        </div>
+
+        <!-- total result amount  -->
+        <div id="total-found" class="text-2xl text-center font-semibold mt-4">
+        </div>
+
+        <!-- Error Message Div -->
+        <div id="error" class="grid place-items-center  text-xl">
+        </div>
+
+        <!--  spinner -->
+        <img id="spinner" class="block mx-auto hidden" src="images/spinner.gif" alt="spinner-img">
+    </header>
+
+
+    <!-- Show Book item by card -->
+    <main class="my-10">
+        <section id="display-card" class="grid grid-cols-3 gap-6">
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
